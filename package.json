@@ -1,0 +1,26 @@
+{
+  "name": "tham-utils",
+  "version": "0.1.0",
+  "description": "Some javascript utilities for common useful things",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suiname/UtilitiesJS.git"
+  },
+  "keywords": [
+    "utilities"
+  ],
+  "author": "Jason Tham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Suiname/UtilitiesJS/issues"
+  },
+  "homepage": "https://github.com/Suiname/UtilitiesJS#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
