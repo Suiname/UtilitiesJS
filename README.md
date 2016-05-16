@@ -23,3 +23,6 @@ if(objectsEqual(jsObject,{})){
 
 #### randomInt(min, max)
 Takes 2 integers and returns a random integer (inclusive) in the range of the two numbers.  Throws a range error if min is greater than max.
+```
+randomInt(1,5) // returns int between 1 and 5 (inclusive)
+```
