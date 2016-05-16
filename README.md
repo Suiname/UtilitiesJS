@@ -20,3 +20,6 @@ if(objectsEqual(jsObject,{})){
   return true;
 }
 ```
+
+#### randomInt(min, max)
+Takes 2 integers and returns a random integer (inclusive) in the range of the two numbers.  Throws a range error if min is greater than max.

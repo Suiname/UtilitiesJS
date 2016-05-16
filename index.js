@@ -22,4 +22,12 @@ function objectsEqual(o1, o2) {
 		return o1 === o2
 }
 
-module.exports = {objectsEqual};
+function randomInt(min, max) {
+  if (min <= max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  } else {
+    throw new RangeError("Minimum must be less than or equal to Maximum")
+  }
+}
+
+module.exports = {objectsEqual, randomInt};
