@@ -30,4 +30,21 @@ function randomInt(min, max) {
   }
 }
 
-module.exports = {objectsEqual, randomInt};
+function bubbleSort(arr) {
+  var swapped = true;
+  var tmp, j=0;
+  while (swapped) {
+    swapped = false
+    j++;
+    for (var i = 0; i < arr.length - j; i++){
+      if(arr[i] > arr[i+1]){
+        tmp = arr[i];
+        arr[i] = arr[i+1];
+        arr[i+1] = tmp;
+        swapped = true;
+      }
+    }
+  }
+}
+
+module.exports = {objectsEqual, randomInt, bubbleSort};
