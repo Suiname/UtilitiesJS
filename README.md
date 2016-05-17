@@ -26,3 +26,6 @@ Takes 2 integers and returns a random integer (inclusive) in the range of the tw
 ```
 randomInt(1,5) // returns int between 1 and 5 (inclusive)
 ```
+
+#### Sorting Algorithms
+All sorting algorithms were gathered from here: http://khan4019.github.io/front-end-Interview-Questions/sort.html#selectionSort
