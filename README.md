@@ -29,3 +29,9 @@ randomInt(1,5) // returns int between 1 and 5 (inclusive)
 
 #### Sorting Algorithms
 All sorting algorithms were gathered from here: http://khan4019.github.io/front-end-Interview-Questions/sort.html#selectionSort
+
+#### bubbleSort(arr)
+sorts Array using Bubble sort algorithm, which is O(n^2) worst case
+
+#### selectionSort(arr)
+sorts Array using Selection sort algorithm, which is O(n^2) worst case
