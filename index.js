@@ -35,4 +35,4 @@ function randomInt(min, max) {
   }
 }
 
-module.exports = {objectsEqual, randomInt, sort};
+module.exports = {objectsEqual, randomInt, sort, data};
