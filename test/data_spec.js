@@ -16,11 +16,18 @@ describe('Data Class', function(){
     function enqueue(){
       queue.enq({})
     }
-    it('can enqueue an object with the enqueue method and not throw an error', function() {
+    it('can enqueue an object with the enq method and not throw an error', function() {
       assert.doesNotThrow(enqueue, Error, 'enq does not throw an error');
     })
     it('can see the last enqueued object with the peek method', function() {
-      assert.deepEqual(queue.peek(), {}, 'These should be equal');
+      assert.deepEqual(queue.peek(), {}, 'These should be equal; both {}');
+    })
+    it('can see size of queue with size method', function(){
+      assert.deepEqual(queue.size(), 1, 'should be equal to 1');
+    })
+    it('can hold multiple objects by calling enq again', function(){
+      enque.enq({});
+      assert.deepEqual(queue.size(), 2, 'should now be equal to 2');
     })
   })
 });
