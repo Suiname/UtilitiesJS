@@ -10,24 +10,44 @@ var assert = require('chai').assert,
 
 describe('Data Class', function(){
   describe('#PriorityQueue', function() {
-    var queue = new PriorityQueue(function(a, b) {
-      return a.cash - b.cash;
-    });
+    var queue;
+    function makeNewQ(){
+      queue = new PriorityQueue(function(a, b) {
+        return a.cash - b.cash;
+      });
+    }
     function enqueue(){
       queue.enq({})
     }
-    it('can enqueue an object with the enq method and not throw an error', function() {
-      assert.doesNotThrow(enqueue, Error, 'enq does not throw an error');
+    describe('#enq', function() {
+      it('can enqueue an object with the enq method and not throw an error', function() {
+        makeNewQ();
+        assert.doesNotThrow(enqueue, Error, 'enq does not throw an error');
+      })
+      it('can hold multiple objects by calling enq again', function(){
+        assert.deepEqual(queue.size(), 1, 'should be equal to 1')
+        queue.enq({});
+        assert.deepEqual(queue.size(), 2, 'should now be equal to 2');
+      })
     })
-    it('can see the last enqueued object with the peek method', function() {
-      assert.deepEqual(queue.peek(), {}, 'These should be equal; both {}');
+    describe('#peek', function(){
+      it('can see the last enqueued object with the peek method', function() {
+        makeNewQ();
+        enqueue();
+        assert.deepEqual(queue.peek(), {}, 'These should be equal; both {}');
+      })
     })
-    it('can see size of queue with size method', function(){
-      assert.deepEqual(queue.size(), 1, 'should be equal to 1');
-    })
-    it('can hold multiple objects by calling enq again', function(){
-      queue.enq({});
-      assert.deepEqual(queue.size(), 2, 'should now be equal to 2');
+    describe('#size', function(){
+      it('returns 0 for an empty queue', function(){
+        makeNewQ();
+        assert.deepEqual(queue.size(), 0, 'should be equal to 0');
+      })
+      it('can see number of objects in queue with size method', function(){
+        queue.enq({});
+        assert.deepEqual(queue.size(), 1, 'should be equal to 1');
+        queue.enq({});
+        assert.deepEqual(queue.size(), 2, 'should be equal to 2');
+      })
     })
   })
 });
