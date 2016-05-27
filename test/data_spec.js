@@ -1,3 +1,4 @@
+'use strict'
 var assert = require('chai').assert,
   expect = require('chai').expect,
   should = require('chai').should,
@@ -144,6 +145,27 @@ describe('Data Class', function(){
         assert.deepEqual(list.start.data, FirstItem, "FirstItem will now be first in the list");
         assert.deepEqual(list.end.data, LastItem, "LastItem added to end of the list");
       })
+    })
+    describe("#delete", function(){
+      it('traverses the List and removes the node with data property that equals the argument given', function() {
+        NewList();
+        var Data = "Data"
+        list.add(Data);
+        assert.deepEqual(list.start.data, Data, "Added Data to List");
+        list.delete(Data);
+        assert.isNull(list.start, "Node with data === Data is removed");
+      })
+      it('does not change a List that does not contain the argument given', function(){
+        var listBeforeDelete = {}, listAfterDelete = {};
+        NewList();
+        var Data = "Data";
+        list.add(1);
+        list.add(2);
+        Object.assign(listBeforeDelete, list);
+        list.delete(Data);
+        Object.assign(listAfterDelete, list);
+        assert.deepEqual(listBeforeDelete, listAfterDelete, "These should be the same")
+      });
     })
   })
 });
