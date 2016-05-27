@@ -122,7 +122,7 @@ describe('Data Class', function(){
       })
     })
     describe("#add", function(){
-      it('adds a node to the end of the list', function(){
+      it('adds a node to an empty list', function(){
         NewList();
         assert.isNull(list.end, 'Will be null');
         list.add();
@@ -133,6 +133,16 @@ describe('Data Class', function(){
         var NewValue = "New Value"
         list.add(NewValue);
         assert.deepEqual(list.end.data, NewValue, "These should be the same object");
+      })
+      it('adds a node to the end of a non-empty list', function(){
+        NewList();
+        var FirstItem = "First Item",
+          LastItem = "Last Item";
+        list.add(FirstItem);
+        assert.deepEqual(list.end.data, FirstItem, "Adds a node with the First Item as the data");
+        list.add(LastItem);
+        assert.deepEqual(list.start.data, FirstItem, "FirstItem will now be first in the list");
+        assert.deepEqual(list.end.data, LastItem, "LastItem added to end of the list");
       })
     })
   })

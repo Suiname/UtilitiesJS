@@ -187,7 +187,7 @@ function List() {
   if (this.start === null) {
    this.start = List.makeNode();
    this.end = this.start;
-  } else { t
+  } else { 
    this.end.next = List.makeNode();
    this.end = this.end.next;
   } ;
