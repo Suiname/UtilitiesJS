@@ -11,12 +11,21 @@ var assert = require('chai').assert,
 describe('Data Class', function(){
   describe('#PriorityQueue', function() {
     var queue;
+    it('can create a new PriorityQueue by passing the constructor a function', function() {
+      queue = new PriorityQueue(function(a, b) {
+        return a.cash - b.cash;
+      });
+      assert.deepEqual(typeof queue, 'object', 'constructor should return an object')
+    })
     function makeNewQ(){
       queue = new PriorityQueue(function(a, b) {
         return a.cash - b.cash;
       });
     }
     function enqueue(){
+      if (queue === undefined) {
+        makeNewQ();
+      }
       queue.enq({})
     }
     describe('#enq', function() {
@@ -31,10 +40,19 @@ describe('Data Class', function(){
       })
     })
     describe('#peek', function(){
-      it('can see the last enqueued object with the peek method', function() {
+      it('Throws an error on an empty queue', function() {
+        function emptyPeek(){
+          makeNewQ();
+          queue.peek();
+        }
+        assert.throws(emptyPeek, Error, 'PriorityQueue is empty');
+      })
+      it('will show the last object in the queue', function(){
         makeNewQ();
-        enqueue();
-        assert.deepEqual(queue.peek(), {}, 'These should be equal; both {}');
+        queue.enq(1);
+        assert.deepEqual(queue.peek(), 1, 'These should be equal to 1');
+        queue.enq(2);
+        assert.deepEqual(queue.peek(), 2, 'These should be equal to 2')
       })
     })
     describe('#size', function(){
@@ -60,6 +78,8 @@ describe('Data Class', function(){
         dq();
         assert.deepEqual(queue.size(), 0, 'should be equal to 0');
       })
+      enqueue()
+      console.log(dq());
     })
   })
 });
