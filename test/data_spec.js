@@ -26,7 +26,7 @@ describe('Data Class', function(){
       assert.deepEqual(queue.size(), 1, 'should be equal to 1');
     })
     it('can hold multiple objects by calling enq again', function(){
-      enque.enq({});
+      queue.enq({});
       assert.deepEqual(queue.size(), 2, 'should now be equal to 2');
     })
   })
