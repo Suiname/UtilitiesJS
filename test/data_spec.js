@@ -49,5 +49,17 @@ describe('Data Class', function(){
         assert.deepEqual(queue.size(), 2, 'should be equal to 2');
       })
     })
+    describe('#deq', function(){
+      function dq(){
+        queue.deq();
+      }
+      it('can remove an item from the queue', function(){
+        makeNewQ();
+        enqueue();
+        assert.deepEqual(queue.size(), 1, 'should be equal to 1');
+        dq();
+        assert.deepEqual(queue.size(), 0, 'should be equal to 0');
+      })
+    })
   })
 });
