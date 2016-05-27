@@ -2,20 +2,23 @@ var assert = require('chai').assert,
   expect = require('chai').expect,
   should = require('chai').should,
   sort = require('../index.js').sort,
-  PriorityQueue = require('../data.js');
-  bubbleSort = sort.bubbleSort;
-  selectionSort = sort.selectionSort;
-  insertionSort = sort.insertionSort;
+  PriorityQueue = require('../data.js').PriorityQueue,
+  List = require('../data.js').List,
+  bubbleSort = sort.bubbleSort,
+  selectionSort = sort.selectionSort,
+  insertionSort = sort.insertionSort,
   mergeSort = sort.mergeSort;
 
 describe('Data Class', function(){
-  describe('#PriorityQueue', function() {
+  describe('PriorityQueue', function() {
     var queue;
-    it('can create a new PriorityQueue by passing the constructor a function', function() {
-      queue = new PriorityQueue(function(a, b) {
-        return a.cash - b.cash;
-      });
-      assert.deepEqual(typeof queue, 'object', 'constructor should return an object')
+    describe('#PriorityQueue', function(){
+      it('can create a new PriorityQueue by passing the constructor a function', function() {
+        queue = new PriorityQueue(function(a, b) {
+          return a.cash - b.cash;
+        });
+        assert.deepEqual(typeof queue, 'object', 'constructor should return an object')
+      })
     })
     function makeNewQ(){
       queue = new PriorityQueue(function(a, b) {
@@ -88,6 +91,34 @@ describe('Data Class', function(){
       it('returns an undefined value', function() {
         enqueue();
         assert.deepEqual(dq(), undefined, 'should be equal');
+      })
+    })
+  })
+
+  describe("List", function(){
+    var list;
+    function NewList(){
+      list = new List();
+    }
+    describe("#List", function(){
+      it('can create a new List object using the constructor', function(){
+        NewList();
+        assert.isObject(list, 'list is an object');
+      })
+      it('returns an undefined value', function(){
+        assert.isUndefined(List(), "Constructor should return undefined")
+      })
+      it('creates an object with null properties start and end', function(){
+        NewList();
+        assert.propertyVal(list, 'start', null);
+        assert.propertyVal(list, 'end', null);
+      })
+      it('creates an object with methods add, delete, insertAsFirst, insertAfter, item, and each', function(){
+        NewList();
+        var methods = ['add', 'delete', 'insertAfter', 'insertAsFirst', 'item', 'each'];
+        for (var method in methods) {
+          assert.isFunction(list[methods[method]], methods[method] + " should be a function");
+        }
       })
     })
   })
