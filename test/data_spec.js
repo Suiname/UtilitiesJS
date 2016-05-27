@@ -34,9 +34,16 @@ describe('Data Class', function(){
         assert.doesNotThrow(enqueue, Error, 'enq does not throw an error');
       })
       it('can hold multiple objects by calling enq again', function(){
+        makeNewQ();
+        enqueue();
         assert.deepEqual(queue.size(), 1, 'should be equal to 1')
-        queue.enq({});
+        enqueue();
         assert.deepEqual(queue.size(), 2, 'should now be equal to 2');
+      })
+      it('returns the size of the queue', function(){
+        makeNewQ();
+        assert.deepEqual(queue.size(), 0, 'should be equal to 0, queue is empty')
+        assert.deepEqual(queue.enq({}), 1, 'should return 1, queue has 1 object')
       })
     })
     describe('#peek', function(){
@@ -61,9 +68,9 @@ describe('Data Class', function(){
         assert.deepEqual(queue.size(), 0, 'should be equal to 0');
       })
       it('can see number of objects in queue with size method', function(){
-        queue.enq({});
+        enqueue();
         assert.deepEqual(queue.size(), 1, 'should be equal to 1');
-        queue.enq({});
+        enqueue();
         assert.deepEqual(queue.size(), 2, 'should be equal to 2');
       })
     })
@@ -78,8 +85,10 @@ describe('Data Class', function(){
         dq();
         assert.deepEqual(queue.size(), 0, 'should be equal to 0');
       })
-      enqueue()
-      console.log(dq());
+      it('returns an undefined value', function() {
+        enqueue();
+        assert.deepEqual(dq(), undefined, 'should be equal');
+      })
     })
   })
 });
