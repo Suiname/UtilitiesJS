@@ -1,4 +1,7 @@
+//Library of Array and Object sorting algorithms
 var sort = require('./sorting');
+//Library of Discrete Data Structures
+var data = require('./data');
 
 function objectsEqual(o1, o2) {
 	if (typeof o1 !== typeof o2)
