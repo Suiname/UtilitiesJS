@@ -121,5 +121,19 @@ describe('Data Class', function(){
         }
       })
     })
+    describe("#add", function(){
+      it('adds a node to the end of the list', function(){
+        NewList();
+        assert.isNull(list.end, 'Will be null');
+        list.add();
+        assert.isNotNull(list.end, "Will not be null")
+      })
+      it('sets the data value of the added node to whatever is passed as a param', function(){
+        NewList();
+        var NewValue = "New Value"
+        list.add(NewValue);
+        assert.deepEqual(list.end.data, NewValue, "These should be the same object");
+      })
+    })
   })
 });
