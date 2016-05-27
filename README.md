@@ -45,3 +45,55 @@ sorts Array using Insertion sort algorithm, which is O(n^2) worst case
 #### sort.mergeSort(arr)
 sorts Array using Merge sort algorithm, which is O(n log n) worst case
 `sort.mergeSort([3,4,5,2,1]) // should return [1,2,3,4,5]`
+
+#### Data Structures
+Data Structures in JavaScript
+
+#### PriorityQueue
+from here https://github.com/janogonzalez/priorityqueuejs
+
+## API
+
+### PriorityQueue()
+
+Initializes a new empty `PriorityQueue` wich uses `.DEFAULT_COMPARATOR()` as
+the comparator function for its elements.
+
+### PriorityQueue(comparator)
+
+Initializes a new empty `PriorityQueue` with uses the given `comparator(a, b)`
+function as the comparator for its elements.
+
+The comparator function must return a positive number when `a > b`, 0 when
+`a == b` and a negative number when `a < b`.
+
+### PriorityQueue.DEFAULT_COMPARATOR(a, b)
+
+Compares two `Number` or `String` objects.
+
+### PriorityQueue#deq()
+
+Dequeues the top element of the priority queue.
+Throws an `Error` when the queue is empty.
+
+### PriorityQueue#enq(element)
+
+Enqueues the `element` at the priority queue and returns its new size.
+
+### PriorityQueue#forEach(fn)
+
+Executes `fn` on each element. Just be careful to not modify the priorities,
+since the queue won't reorder itself.
+
+### PriorityQueue#isEmpty()
+
+Returns whether the priority queue is empty or not.
+
+### PriorityQueue#peek()
+
+Peeks at the top element of the priority queue.
+Throws an `Error` when the queue is empty.
+
+### PriorityQueue#size()
+
+Returns the size of the priority queue.
