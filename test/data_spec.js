@@ -1,5 +1,4 @@
-'use strict'
-var assert = require('chai').assert,
+  var assert = require('chai').assert,
   expect = require('chai').expect,
   should = require('chai').should,
   sort = require('../index.js').sort,
@@ -166,6 +165,29 @@ describe('Data Class', function(){
         Object.assign(listAfterDelete, list);
         assert.deepEqual(listBeforeDelete, listAfterDelete, "These should be the same")
       });
+    })
+    describe("#insertAsFirst", function(){
+      it('inserts a node into an empty list', function () {
+        NewList();
+        list.insertAsFirst(Data = "Data");
+        assert.propertyVal(list.start, "data", Data);
+      })
+      it('inserts a node with data into the start of a non-empty list', function () {
+        NewList();
+        list.add(1);
+        list.add(2);
+        assert.propertyVal(list.start, "data", 1); //added 1 to the list first
+        list.insertAsFirst(Data = "Data");
+        assert.propertyVal(list.start, "data", Data);
+      })
+      it('pushes the node at the start of the list to the next position in the list', function(){
+        NewList();
+        list.add(1);
+        var oneNode = list.start;
+        assert.propertyVal(list.start, "next", null); // only 1 item in the list, next should be null
+        list.insertAsFirst(Data = "Data");
+        assert.propertyVal(list.start, "next", oneNode); //oneNode should now be next node from the first start of the list
+      })
     })
   })
 });
