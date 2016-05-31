@@ -13,11 +13,11 @@ describe('Data Class', function(){
   describe('PriorityQueue', function() {
     var queue;
     describe('#PriorityQueue', function(){
-      it('can create a new PriorityQueue by passing the constructor a function', function() {
+      it('can create a new PriorityQueue Object by passing the constructor a function', function() {
         queue = new PriorityQueue(function(a, b) {
           return a.cash - b.cash;
         });
-        assert.deepEqual(typeof queue, 'object', 'constructor should return an object')
+        assert.isObject(queue, 'constructor should return an object')
       })
     })
     function makeNewQ(){
@@ -38,9 +38,9 @@ describe('Data Class', function(){
       })
       it('can hold multiple objects by calling enq again', function(){
         makeNewQ();
-        enqueue();
+        queue.enq({});
         assert.deepEqual(queue.size(), 1, 'should be equal to 1')
-        enqueue();
+        queue.enq({});
         assert.deepEqual(queue.size(), 2, 'should now be equal to 2');
       })
       it('returns the size of the queue', function(){
@@ -183,8 +183,28 @@ describe('Data Class', function(){
         list.add(1);
         var oneNode = list.start;
         assert.propertyVal(list.start, "next", null); // only 1 item in the list, next should be null
-        list.insertAsFirst(Data );
+        list.insertAsFirst(Data);
         assert.propertyVal(list.start, "next", oneNode); //oneNode should now be next node from the first start of the list
+      })
+    })
+    describe("#insertAfter", function(){
+      var Data = "Data"
+      var Data2 = "Data2"
+      it('inserts a new node with data value of 2nd argument after node in the list with data value equal to 1st argument', function () {
+        NewList();
+        list.add(Data); //add node with data= Data
+        list.insertAfter(Data, Data2); //insert node with Data2 after node with data = Data
+        assert.propertyVal(list.start, "data", Data); // first node should be data = Data
+        assert.propertyVal(list.end, "data", Data2); // second node should be data = Data2
+      })
+      it('does nothing if Data cannot be found in the list', function () {
+        NewList();
+        var listBeforeInsert = {}, listAfterInsert={};
+        list.add(Data);
+        Object.assign(listBeforeInsert, list);
+        list.insertAfter("Data that doesn't exist", Data2);
+        Object.assign(listAfterInsert, list);
+        assert.deepEqual(listBeforeInsert, listAfterInsert, "These should be equal");
       })
     })
   })
