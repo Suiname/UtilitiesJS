@@ -190,7 +190,7 @@ describe('Data Class', function(){
     describe("#insertAfter", function(){
       var Data = "Data"
       var Data2 = "Data2"
-      it('inserts a new node with data value of 2nd argument after node in the list with data value equal to 1st argument', function () {
+      it('finds a node in the list with data equal to 1st argument then inserts a new node after it that has data equal to 2nd argument', function () {
         NewList();
         list.add(Data); //add node with data= Data
         list.insertAfter(Data, Data2); //insert node with Data2 after node with data = Data
@@ -205,6 +205,23 @@ describe('Data Class', function(){
         list.insertAfter("Data that doesn't exist", Data2);
         Object.assign(listAfterInsert, list);
         assert.deepEqual(listBeforeInsert, listAfterInsert, "These should be equal");
+      })
+      it('inserts after the first data match if multiple matches exist in the list', function () {
+        NewList();
+        list.add(Data);
+        list.add(Data);
+        list.add(Data);
+        // List now contains 3 nodes with data = Data;
+        list.insertAfter(Data, Data2);
+        assert.deepEqual(list.end.data, Data, "The last item in the list should have data = Data")
+        assert.deepEqual(list.start.next.data, Data2, "These should be equal");
+      })
+    })
+    describe('#item', function () {
+      it('takes an integer argument and returns the node at that position of the list', function () {
+        NewList();
+        list.add("one");
+        assert.deepEqual(list.item(1), {data:'one', next:null}, "The first and only list item should be an {} with data of 'one'")
       })
     })
   })
