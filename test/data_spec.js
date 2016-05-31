@@ -105,9 +105,6 @@ describe('Data Class', function(){
         NewList();
         assert.isObject(list, 'list is an object');
       })
-      it('returns an undefined value', function(){
-        assert.isUndefined(List(), "Constructor should return undefined")
-      })
       it('creates an object with null properties start and end', function(){
         NewList();
         assert.propertyVal(list, 'start', null);
@@ -167,9 +164,10 @@ describe('Data Class', function(){
       });
     })
     describe("#insertAsFirst", function(){
+      var Data = "Data"
       it('inserts a node into an empty list', function () {
         NewList();
-        list.insertAsFirst(Data = "Data");
+        list.insertAsFirst(Data);
         assert.propertyVal(list.start, "data", Data);
       })
       it('inserts a node with data into the start of a non-empty list', function () {
@@ -177,7 +175,7 @@ describe('Data Class', function(){
         list.add(1);
         list.add(2);
         assert.propertyVal(list.start, "data", 1); //added 1 to the list first
-        list.insertAsFirst(Data = "Data");
+        list.insertAsFirst(Data);
         assert.propertyVal(list.start, "data", Data);
       })
       it('pushes the node at the start of the list to the next position in the list', function(){
@@ -185,7 +183,7 @@ describe('Data Class', function(){
         list.add(1);
         var oneNode = list.start;
         assert.propertyVal(list.start, "next", null); // only 1 item in the list, next should be null
-        list.insertAsFirst(Data = "Data");
+        list.insertAsFirst(Data );
         assert.propertyVal(list.start, "next", oneNode); //oneNode should now be next node from the first start of the list
       })
     })

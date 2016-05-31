@@ -2,7 +2,7 @@ var assert = require('chai').assert,
   expect = require('chai').expect,
   should = require('chai').should,
   utils = require('../index.js'),
-  objectsEqual = utils.objectsEqual;
+  objectsEqual = utils.objectsEqual,
   randomInt = utils.randomInt;
 
 describe('Utils', function(){
