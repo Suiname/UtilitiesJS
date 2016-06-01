@@ -223,6 +223,25 @@ describe('Data Class', function(){
         list.add("one");
         assert.deepEqual(list.item(1), {data:'one', next:null}, "The first and only list item should be an {} with data of 'one'")
       })
+      it('returns null if the list item does not exist', function(){
+        NewList();
+        assert.isNull(list.item(1), "List is empty, so this will return null")
+      })
+    })
+    describe('#each', function () {
+      it('takes a function with a single parameter and runs it on each node in the list, passing each node as the argument', function(){
+        function squareData(node){
+          node.data *= node.data;
+        }
+        NewList();
+        list.add(2)
+        list.add(4)
+        assert.deepEqual(list.item(1).data, 2, "This will be 2");
+        assert.deepEqual(list.item(2).data, 4, "This will be 4");
+        list.each(squareData);
+        assert.deepEqual(list.item(1).data, 4, "This will be 4 (2 squared)");
+        assert.deepEqual(list.item(2).data, 16, "This will be 16 (4 squared)");
+      })
     })
   })
 });
