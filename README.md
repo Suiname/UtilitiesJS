@@ -34,22 +34,26 @@ All sorting algorithms were gathered from here: http://khan4019.github.io/front-
 
 #### sort.bubbleSort(arr)
 sorts Array using Bubble sort algorithm, which is O(n^2) worst case
-```sort.bubbleSort([3,4,5,2,1]) // should return [1,2,3,4,5]
+```
+sort.bubbleSort([3,4,5,2,1]) // should return [1,2,3,4,5]
 ```
 
 #### sort.selectionSort(arr)
 sorts Array using Selection sort algorithm, which is O(n^2) worst case
-```sort.selectionSort([3,4,5,2,1]) // should return [1,2,3,4,5]
+```
+sort.selectionSort([3,4,5,2,1]) // should return [1,2,3,4,5]
 ```
 
 #### sort.insertionSort(arr)
 sorts Array using Insertion sort algorithm, which is O(n^2) worst case
-```sort.insertionSort([3,4,5,2,1]) // should return [1,2,3,4,5]
+```
+sort.insertionSort([3,4,5,2,1]) // should return [1,2,3,4,5]
 ```
 
 #### sort.mergeSort(arr)
 sorts Array using Merge sort algorithm, which is O(n log n) worst case
-```sort.mergeSort([3,4,5,2,1]) // should return [1,2,3,4,5]
+```
+sort.mergeSort([3,4,5,2,1]) // should return [1,2,3,4,5]
 ```
 
 ### Data Structures
