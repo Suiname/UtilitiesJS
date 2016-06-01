@@ -4,6 +4,7 @@
   sort = require('../index.js').sort,
   PriorityQueue = require('../data.js').PriorityQueue,
   List = require('../data.js').List,
+  Tree = require('../data.js').Tree,
   bubbleSort = sort.bubbleSort,
   selectionSort = sort.selectionSort,
   insertionSort = sort.insertionSort,
@@ -241,6 +242,15 @@ describe('Data Class', function(){
         list.each(squareData);
         assert.deepEqual(list.item(1).data, 4, "This will be 4 (2 squared)");
         assert.deepEqual(list.item(2).data, 16, "This will be 16 (4 squared)");
+      })
+    })
+
+    describe("Tree", function () {
+      describe("#Tree", function () {
+        it('can create a new Tree object', function () {
+          var tree = new Tree();
+          assert.isObject(tree, "This should be an object");
+        })
       })
     })
   })

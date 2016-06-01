@@ -315,3 +315,4 @@ function BinaryTree(){
  this.btSMF = function(level, node){
   return node + (1 << level) - 1;
  }
+}
