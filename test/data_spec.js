@@ -244,13 +244,77 @@ describe('Data Class', function(){
         assert.deepEqual(list.item(2).data, 16, "This will be 16 (4 squared)");
       })
     })
-
-    describe("Tree", function () {
-      describe("#Tree", function () {
-        it('can create a new Tree object', function () {
-          var tree = new Tree();
-          assert.isObject(tree, "This should be an object");
-        })
+  })
+  describe("Tree", function () {
+    describe("#Tree", function () {
+      it('creates a Tree Object with properties of level, node, and Nodes', function () {
+        var tree = new Tree();
+        assert.isObject(tree, "This should be an object");
+        assert.property(tree, 'level');
+        assert.property(tree, 'node');
+        assert.property(tree, 'Nodes');
+      })
+    })
+    var tree;
+    function NewTree(){
+      tree = new Tree();
+    }
+    describe("#setNode", function () {
+      it('takes 3 arguments: value, level, and node and sets the value of the node at the specified level', function () {
+        NewTree();
+        tree.setNode("Value", 1, 1);
+        assert.deepEqual(tree.getNode(1,1), "Value", "getNode should return the value at 1,1 which we just set");
+      })
+      it('overwrites an existing value if the node already has a value', function(){
+        NewTree();
+        tree.setNode("Value", 1, 1);
+        assert.deepEqual(tree.getNode(1,1), "Value", "Value was set as 'Value'");
+        tree.setNode("New Value", 1, 1);
+        assert.deepEqual(tree.getNode(1,1), "New Value", "'New Value' should have been set at node 1,1");
+      })
+      it('if given only 1 argument, writes the value to the current level and node', function () {
+        NewTree();
+        tree.node = 2;
+        tree.level = 2;
+        tree.setNode("Two");
+        assert.deepEqual(tree.getNode(2,2), "Two", "node and level were both 2, so node 2,2 should be set to 'Two'");
+      })
+    })
+    describe("#getNode", function () {
+      it('takes 2 arguments: level and node and returns the value of the tree at the level and node', function () {
+        NewTree();
+        tree.setNode("Two", 2, 2);
+        assert.deepEqual(tree.getNode(2,2), "Two", "getNode should return the value at 2,2 which we set to Two");
+      })
+      it('returns value at current level and node if given no arguments', function () {
+        NewTree();
+        tree.setNode("Two", 2, 2);
+        tree.level = 2;
+        tree.node = 2;
+        assert.deepEqual(tree.getNode(), "Two", "This should return Two");
+      })
+    })
+    describe('#root', function () {
+      it('sets the level and node of the tree to 0', function () {
+        NewTree();
+        tree.level = 2;
+        tree.node = 2;
+        assert.deepEqual(tree.level, 2, "Should now be set to 2")
+        assert.deepEqual(tree.node, 2, "Should now be set to 2")
+        tree.root();
+        assert.deepEqual(tree.level, 0, "Should now be set to 0")
+        assert.deepEqual(tree.node, 0, "Should now be set to 0")
+      })
+      it('returns the value of the root node when given no arguments', function () {
+        NewTree();
+        tree.setNode("Root", 0, 0)
+        assert.deepEqual(tree.root(), "Root", "Value of root node should be string 'Root'");
+      })
+      it('sets the value of the root node to the argument given', function () {
+        NewTree();
+        assert.isUndefined(tree.root(), "Value not set, should be undefined");
+        tree.root(1);
+        assert.deepEqual(tree.root(), 1, "Value set to 1, .root() should now return 1")
       })
     })
   })
