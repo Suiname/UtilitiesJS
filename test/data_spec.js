@@ -57,6 +57,27 @@ describe('Data Class', function(){
         queue.enq(cash200); // since 2nd object.cash > 1st object.cash, it should be inserted first in queue
         assert.deepEqual(queue.deq(), cash200, "cash200 should be given priority based on cash value")
       })
+      it('takes an object that is evaluated as equal by the comparator and inserts it after the object already in the queue', function () {
+        makeNewQ();
+        var John = {name: "John", cash: 100}
+        var James = {name: "James", cash: 100} // John and James have equal cash values, so comparator will find them equal
+        queue.enq(John);
+        queue.enq(James);
+        assert.deepEqual(queue.deq(), John, "John was inserted first, so John is dequeued first")
+      })
+      it('inserts objects that are undefined by comparator and inserts them last in, first out', function () {
+        makeNewQ();
+        queue.enq(1);
+        queue.enq(2);
+        assert.deepEqual(queue.deq(), 2, "1 and 2 are both undefined, so 2 comes out first since it was inserted last");
+      })
+      it('inserts objects that are defined by comparator before objects undefined by comparator', function () {
+        makeNewQ();
+        queue.enq(1);
+        queue.enq(2);
+        queue.enq({cash:100});
+        assert.deepEqual(queue.deq(), {cash:100}, "1 and 2 are both undefined, so a defined object comes out first");
+      })
     })
     describe('#peek', function(){
       it('Throws an error on an empty queue', function() {
@@ -66,7 +87,7 @@ describe('Data Class', function(){
         }
         assert.throws(emptyPeek, Error, 'PriorityQueue is empty');
       })
-      it('will show the last object in the queue', function(){
+      it('will show the first object in the queue', function(){
         makeNewQ();
         queue.enq(1);
         assert.deepEqual(queue.peek(), 1, 'These should be equal to 1');
@@ -101,13 +122,11 @@ describe('Data Class', function(){
         enqueue();
         assert.deepEqual(dq(), undefined, 'should be equal');
       })
-      it('removes objects from the queue based on the comparator', function () {
+      it('removes object at the front of the queue', function () {
         makeNewQ();
-        var cash100 = {cash: 100}
-        var cash200 = {cash: 200}
-        queue.enq(cash100);
-        queue.enq(cash200);
-        assert.deepEqual(queue.deq(), cash200, "cash200 should be dequeued first based on cash value")
+        queue.enq(1);
+        queue.enq(2);
+        assert.deepEqual(queue.deq(), 2, "dequeues first object in queue")
       })
     })
   })
