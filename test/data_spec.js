@@ -49,6 +49,14 @@ describe('Data Class', function(){
         assert.deepEqual(queue.size(), 0, 'should be equal to 0, queue is empty')
         assert.deepEqual(queue.enq({}), 1, 'should return 1, queue has 1 object')
       })
+      it('inserts into the queue based on the comparator', function () {
+        makeNewQ();
+        var cash100 = {cash: 100}
+        var cash200 = {cash: 200}
+        queue.enq(cash100);
+        queue.enq(cash200); // since 2nd object.cash > 1st object.cash, it should be inserted first in queue
+        assert.deepEqual(queue.deq(), cash200, "cash200 should be given priority based on cash value")
+      })
     })
     describe('#peek', function(){
       it('Throws an error on an empty queue', function() {
@@ -92,6 +100,14 @@ describe('Data Class', function(){
       it('returns an undefined value', function() {
         enqueue();
         assert.deepEqual(dq(), undefined, 'should be equal');
+      })
+      it('removes objects from the queue based on the comparator', function () {
+        makeNewQ();
+        var cash100 = {cash: 100}
+        var cash200 = {cash: 200}
+        queue.enq(cash100);
+        queue.enq(cash200);
+        assert.deepEqual(queue.deq(), cash200, "cash200 should be dequeued first based on cash value")
       })
     })
   })

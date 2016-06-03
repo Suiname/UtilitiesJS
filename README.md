@@ -1,6 +1,12 @@
 ## Utilities Library
 
 ### Utilities
+Some useful Utilities
+```
+var utils = require('tham-utils')
+var objectsEqual = utils.objectsEqual
+var randomInt = utils.randomInt
+```
 
 #### objectsEqual(obj1, obj2)
 Takes 2 objects and returns true if their key value pairs are all equal and false if they are not.  Will handle nested objects and arrays as well.  
@@ -32,6 +38,10 @@ randomInt(1,5) // returns int between 1 and 5 (inclusive)
 ### Sorting Algorithms
 All sorting algorithms were gathered from here: http://khan4019.github.io/front-end-Interview-Questions/sort.html#selectionSort
 
+```
+var sort = require('tham-utils').sort
+```
+
 #### sort.bubbleSort(arr)
 sorts Array using Bubble sort algorithm, which is O(n^2) worst case
 ```
@@ -61,6 +71,10 @@ Data Structures in JavaScript
 
 #### PriorityQueue
 from here https://github.com/janogonzalez/priorityqueuejs
+
+```
+var PriorityQueue = require('tham-utils').data.PriorityQueue
+```
 
 ##### API
 
@@ -112,6 +126,10 @@ Returns the size of the priority queue.
 #### List
 
 Linked list
+
+```
+var List = require('tham-utils').data.List
+```
 
 ##### API
 
@@ -207,6 +225,10 @@ return list.end.data // 4
 #### Tree
 
 Binary Tree
+
+```
+var Tree = require('tham-utils').data.Tree
+```
 
 ##### API
 
