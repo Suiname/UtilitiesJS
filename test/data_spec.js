@@ -317,5 +317,97 @@ describe('Data Class', function(){
         assert.deepEqual(tree.root(), 1, "Value set to 1, .root() should now return 1")
       })
     })
+    describe('#leftChild', function () {
+      it('sets the value of node and level to the location of the left child', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        assert.propertyVal(tree, 'node', 0, "We are at the Root so node and level should be 0");
+        assert.propertyVal(tree, 'level', 0, "We are at the Root so node and level should be 0");
+        tree.leftChild();
+        assert.propertyVal(tree, 'node', 0, "We are at the left child so node should be 0");
+        assert.propertyVal(tree, 'level', 1, "We are at the left child so level should be 1");
+      })
+      it('returns the value of the left child of the current node if not passed an argument', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        assert.deepEqual(tree.leftChild(), "Left Child", "This was set to the string 'Left Child'");
+      })
+      it('sets the value of the left child of the current node if passed an argument', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Incorrect",1,0); // set the left child's value to "Incorrect"
+        tree.setNode("Right Child",1,1);
+        assert.deepEqual(tree.leftChild(), "Incorrect", "We set this value to the string 'Incorrect'");
+        tree.root(); //set the current node back to the root
+        tree.leftChild("Left Child"); // setting the Left Child of the root aka node(1,0) to the value "Left Child"
+        assert.deepEqual(tree.getNode(1,0), "Left Child", "We set the value to the string 'Left Child'");
+      })
+    })
+    describe('#rightChild', function () {
+      it('sets the value of node and level to the location of the right child', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        assert.propertyVal(tree, 'node', 0, "We are at the Root so node and level should be 0");
+        assert.propertyVal(tree, 'level', 0, "We are at the Root so node and level should be 0");
+        tree.rightChild();
+        assert.propertyVal(tree, 'node', 1, "We are at the right child so node should be 1");
+        assert.propertyVal(tree, 'level', 1, "We are at the right child so level should be 1");
+      })
+      it('returns the value of the right child of the current node if not passed an argument', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        assert.deepEqual(tree.rightChild(), "Right Child", "This was set to the string 'Right Child'");
+      })
+      it('sets the value of the right child of the current node if passed an argument', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0); // set the left child's value to "Incorrect"
+        tree.setNode("Incorrect",1,1);
+        assert.deepEqual(tree.rightChild(), "Incorrect", "We set this value to the string 'Incorrect'");
+        tree.root(); //set the current node back to the root
+        tree.rightChild("Right Child"); // setting the Left Child of the root aka node(1,0) to the value "Left Child"
+        assert.deepEqual(tree.getNode(1,0), "Left Child", "We set the value to the string 'Right Child'");
+      })
+    })
+    describe("#parent", function () {
+      it('sets the value of node and level to the location of the parent node', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        tree.rightChild(); // set location to right child
+        assert.propertyVal(tree, 'node', 1, "location was set to right child, so node and level should be 1")
+        assert.propertyVal(tree, 'level', 1, "location was set to right child, so node and level should be 1")
+        tree.parent(); // set location to parent
+        assert.propertyVal(tree, 'node', 0, "location was set to parent of right child, so node and level should be 0")
+        assert.propertyVal(tree, 'level', 0, "location was set to parent of right child, so node and level should be 0")
+      })
+      it('returns the value of the parent node if not given an argument', function () {
+        NewTree();
+        tree.root("Root");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        tree.rightChild(); // set location to right child
+        assert.deepEqual(tree.parent(), "Root", "Will return the value of the parent node, which is 'Root'");
+      })
+      it('sets the value of the parent node if passed an argument', function () {
+        NewTree();
+        tree.root("Incorrect");
+        tree.setNode("Left Child",1,0);
+        tree.setNode("Right Child",1,1);
+        assert.deepEqual(tree.root(), "Incorrect", "Value of root node initially set to 'Incorrect'");
+        tree.rightChild(); // set location to right child
+        tree.parent("Root"); // set parent value to Root
+        assert.deepEqual(tree.root(), "Root", "Value of root node was set to 'Root'");
+      })
+    })
   })
 });

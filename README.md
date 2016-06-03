@@ -107,3 +107,119 @@ Throws an `Error` when the queue is empty.
 ###### PriorityQueue#size()
 
 Returns the size of the priority queue.
+
+
+#### List
+
+Linked list
+
+##### API
+
+###### List()
+
+Initializes a new empty list with this.start and this.end set to null
+```
+var list = new List();
+return list.start // null
+return list.end // null
+```
+
+###### List.makeNode()
+
+Function used to generate a new node object.  Creates an object with properties data and next both set to null.
+```
+var node = List.makeNode()
+return node // {data: null, next: null}
+```
+
+###### add(data)
+
+Adds a new node to the list with data value set to passed argument, if list is not empty the node is added to the end
+```
+var list = new List()
+list.add("data")
+return list.start.data // "data"
+list.add("data2")
+return list.start.data // "data"
+return list.end.data // "data2"
+```
+
+###### delete(data)
+
+Deletes the first node with data value that matches passed argument
+```
+var list = new List()
+list.add("data")
+return list.start.data // "data"
+list.delete("data")
+return list.start.data // null
+```
+
+###### insertAsFirst(data)
+
+Inserts new node at the start of the list with data value that equals passed argument
+```
+var list = new List()
+list.add("data")
+return list.start.data // "data"
+list.insertAsFirst("data2")
+return list.start.data // "data2"
+```
+
+######  insertAfter(node, data)
+
+Inserts new node after the first node that has data which equals the first argument passed.  The new node will have a data value of the second argument passed.
+```
+var list = new List()
+list.add("data")
+return list.start.data // "data"
+list.insertAfter("data", "moar data")
+return list.end.data // "moar data"
+```
+
+###### item(index)
+
+Returns the node at the index passed.  The start of the list is index 1.  The Argument given must be an integer.
+```
+var list = new List()
+list.add("data")
+list.add("data2")
+return list.item(1) // {data: "data", next: {data:"data2", next: null}}
+return list.item(2) // {data:"data2", next: null}
+```
+
+######  each(fn)
+
+Takes a function as an argument and runs it on each node in the list.
+```
+var list = new List()
+list.add(1)
+list.add(2)
+function square(node){
+  node.data *= node.data;
+}
+list.each(square);
+return list.start.data // 1
+return list.end.data // 4
+```
+
+
+#### Tree
+
+Binary Tree
+
+##### API
+
+######  Tree()
+
+###### setNode(value, level, node)
+
+###### getNode(value, level, node)
+
+###### root(value)
+
+###### leftChild(value)
+
+###### rightChild(value)
+
+###### parent(value)
