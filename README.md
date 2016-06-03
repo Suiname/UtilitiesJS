@@ -212,14 +212,87 @@ Binary Tree
 
 ######  Tree()
 
+Creates Tree Object with properties level, node, and Nodes.  Nodes is an array which stores the values of each node in the tree, level and node are integers which indicate which location of the tree you are currently at.
+```
+var tree = new Tree();
+return tree.Nodes // []
+return tree.level // 0
+return tree.node // 0
+tree.setNode(0,0,0); //set value of node at (0,0) to 0
+return tree.Nodes //[0]
+```
+
 ###### setNode(value, level, node)
 
-###### getNode(value, level, node)
+Sets the value of the node at level, node to be the first argument passed.  If only one argument is passed (value), it sets the value of the current location to the passed argument.
+```
+var tree = new Tree();
+tree.setNode(0,0,0); //set value of node at (0,0) to 0
+tree.getNode() // 0 (returns value at current node)
+tree.setNode(1); // set value of node at (0,0) to 1
+tree.getNode() // 1 (returns value at current node)
+```
+
+###### getNode(level, node)
+
+Gets the value of the node at the level and node of passed arguments.  If no arguments are given, returns the value of the node at the current location.
+```
+var tree = new Tree();
+tree.setNode(0,1,1); //set value of node at (1,1) to 0
+tree.getNode() // null (returns value at current node)
+tree.getNode(1,1) // 0 (returns value at node (1,1))
+```
 
 ###### root(value)
 
+Sets the current location to the root (0,0).  If an argument was passed, it sets the value of the root node to that argument, otherwise it will return the value of the root node.
+```
+var tree = new Tree();
+tree.node = 1;
+tree.level = 1;
+tree.root(1); // sets root node value to 1, sets current location to root node
+tree.node // 0
+tree.level // 0
+tree.root() // 1 (returns value of root node)
+```
+
 ###### leftChild(value)
+
+Sets current location to the left child of the current node.  If an argument is passed it also sets the value of the left child to that argument.
+
+```
+var tree = new Tree();
+tree.leftChild("Left Child") // sets value of node at (1,0) to "Left Child"
+tree.node // 0
+tree.level // 1
+tree.getNode(1,0) // "Left Child"
+```
 
 ###### rightChild(value)
 
+Sets current location to the right child of the current node.  If an argument is passed it also sets the value of the right child to that argument.
+
+```
+var tree = new Tree();
+tree.rightChild("Right Child") // sets value of node at (1,1) to "Left Child"
+tree.node // 1
+tree.level // 1
+tree.getNode(1,1) // "Right Child"
+```
+
 ###### parent(value)
+
+Sets the current location to the parent node of the current node.  If an argument is passed it also sets the value of the parent to that argument.
+
+```
+var tree = new Tree();
+tree.rightChild() // sets location to (1,1)
+tree.node // 1
+tree.level // 1
+tree.parent() // sets location to parent (0,0)
+tree.node // 0
+tree.level // 0
+tree.leftChild() // sets location to (1,0)
+tree.parent("Root") // sets value of parent node to "Root"
+tree.root() // "Root"
+```
